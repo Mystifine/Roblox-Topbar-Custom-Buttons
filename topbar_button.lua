@@ -120,7 +120,7 @@ return {
 	get_button_from_id = function(id : string)
 		local button
 		local i = 1;
-		while button == nil and i < #buttons do 
+		while button == nil and i <= #buttons do 
 			
 			local b = buttons[i];
 			if b.Name == id then
