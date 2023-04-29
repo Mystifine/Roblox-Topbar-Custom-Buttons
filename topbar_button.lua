@@ -96,8 +96,9 @@ function topbar_button:BindEvent(callback)
 end
 
 return {
-	new = function()
+	new = function(id : string)
 		local new_button = script.button_template:Clone();
+		new_button.Name = id or "Button"
 		table.insert(buttons, new_button);
 		new_button.Position = UDim2.new(0,calculate_button_position_x(new_button),0,4)
 		new_button.Parent = custom_topbar_ui;
@@ -115,5 +116,19 @@ return {
 		};
 		setmetatable(button, topbar_button);
 		return button;
-	end
+	end,
+	get_button_from_id = function(id : string)
+		local button
+		local i = 1;
+		while button == nil and i < #buttons do 
+			
+			local b = buttons[i];
+			if b.Name == id then
+				button = b;
+			end
+			
+			i += 1;
+		end
+		return button
+	end,
 }
